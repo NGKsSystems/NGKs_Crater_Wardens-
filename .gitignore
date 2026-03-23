@@ -1,0 +1,75 @@
+# =========================
+# OS junk
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# Editor / IDE
+# =========================
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+
+.idea/
+*.sln
+*.vcxproj
+*.user
+*.userosscache
+
+# =========================
+# Godot-specific
+# =========================
+.import/
+export.cfg
+export_presets.cfg
+*.translation
+
+# Godot cache/temp
+.godot/
+.cache/
+
+# =========================
+# Builds / exports
+# =========================
+builds/dev/*
+builds/release/*
+*.exe
+*.pck
+*.apk
+*.aab
+*.ipa
+*.zip
+
+# =========================
+# Logs / runtime junk
+# =========================
+*.log
+*.tmp
+*.bak
+
+# =========================
+# Audio / asset temp (optional)
+# =========================
+*.wav.import
+*.ogg.import
+
+# =========================
+# Python (if tools used)
+# =========================
+__pycache__/
+*.pyc
+
+# =========================
+# Proof rule (IMPORTANT)
+# =========================
+# Only allow ZIPs inside _proof
+_proof/*
+!_proof/*.zip
+
+# =========================
+# Large binary optional (uncomment if needed)
+# =========================
+# assets/raw/
