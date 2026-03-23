@@ -22,17 +22,22 @@ func register_pool(key: String, scene: PackedScene, initial_size: int) -> void:
 		_pools[key].append(obj)
 
 func get_object(key: String) -> Node:
-	if not _pools.has(key) or _pools[key].is_empty():
-		if _scenes.has(key):
-			var obj = _scenes[key].instantiate()
-			obj.set_meta("pool_key", key)
-			add_child(obj)
-			return obj
-		push_warning("ObjectPoolManager: no pool for key '%s'" % key)
-		return null
-	var obj = _pools[key].pop_back()
-	obj.show()
-	return obj
+	# Fast path — pool has idle objects
+	if _pools.has(key) and not _pools[key].is_empty():
+		var obj: Node = _pools[key].pop_back()
+		obj.show()
+		return obj
+	# Slow path — pool empty but scene registered; expand pool dynamically
+	if _scenes.has(key):
+		push_warning("[Pool] '%s' empty — dynamic expand" % key)
+		var obj: Node = _scenes[key].instantiate()
+		obj.set_meta("pool_key", key)
+		add_child(obj)
+		obj.show()
+		return obj
+	# Error — key never registered
+	push_error("[Pool] no registration for key '%s' — cannot spawn" % key)
+	return null
 
 func return_object(key: String, obj: Node) -> void:
 	obj.hide()

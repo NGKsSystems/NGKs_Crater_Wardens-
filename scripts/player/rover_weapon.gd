@@ -33,9 +33,10 @@ var _timer_up: float  = 0.0
 
 
 func _ready() -> void:
-	# Pre-fill the pools — no instantiate() will occur during gameplay
+	# Pre-fill the pools — no instantiate() will occur during normal gameplay
 	ObjectPoolManager.register_pool("projectile_forward", _SCENE_FWD, 12)
 	ObjectPoolManager.register_pool("projectile_up",      _SCENE_UP,   8)
+	print("[Weapon] pools registered — fwd:12 up:8")
 
 
 # Called every physics frame by rover_controller.gd — decrements cooldown timers.
@@ -50,7 +51,8 @@ func tick(delta: float) -> void:
 func try_fire_forward() -> void:
 	if _timer_fwd > 0.0:
 		return
-	_fire("projectile_forward", Vector2(speed_forward, 0.0), lifetime_forward, _muzzle_fwd)
+	print("[Weapon] fire_forward")
+	_fire("projectile_forward", _SCENE_FWD, Vector2(speed_forward, 0.0), lifetime_forward, _muzzle_fwd)
 	_timer_fwd = cooldown_forward
 
 
@@ -58,16 +60,21 @@ func try_fire_forward() -> void:
 func try_fire_up() -> void:
 	if _timer_up > 0.0:
 		return
-	_fire("projectile_up", Vector2(0.0, -speed_up), lifetime_up, _muzzle_up)
+	print("[Weapon] fire_up")
+	_fire("projectile_up", _SCENE_UP, Vector2(0.0, -speed_up), lifetime_up, _muzzle_up)
 	_timer_up = cooldown_up
 
 
-func _fire(key: String, vel: Vector2, life: float, muzzle: Marker2D) -> void:
+func _fire(key: String, fallback_scene: PackedScene, vel: Vector2, life: float, muzzle: Marker2D) -> void:
 	if muzzle == null:
-		push_error("RoverWeapon: muzzle node is null — MuzzleForward/MuzzleUp missing from rover.tscn")
+		push_error("[Weapon] muzzle null — check MuzzleForward/MuzzleUp in rover.tscn")
 		return
-	var proj = ObjectPoolManager.get_object(key)
+	var proj: Node = ObjectPoolManager.get_object(key)
 	if proj == null:
-		push_warning("RoverWeapon: pool '%s' exhausted — projectile not fired" % key)
-		return
+		# Pool returned null — guaranteed fallback: instantiate directly and parent to pool manager
+		push_warning("[Weapon] pool '%s' null — emergency instantiate" % key)
+		proj = fallback_scene.instantiate()
+		proj.set_meta("pool_key", key)
+		ObjectPoolManager.add_child(proj)
 	proj.activate(muzzle.global_position, vel, life)
+	print("[Weapon] spawned %s pos=%s" % [key, str(muzzle.global_position)])
