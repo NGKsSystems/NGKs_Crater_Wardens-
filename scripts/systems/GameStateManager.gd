@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func change_state(new_state: int) -> void:
 	current_state = new_state
-	emit_signal("state_changed", new_state)
+	state_changed.emit(new_state)
 
 func is_playing() -> bool:
 	return current_state == State.PLAYING

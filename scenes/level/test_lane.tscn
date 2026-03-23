@@ -1,0 +1,109 @@
+; Test Lane — NGKs Crater Wardens V1
+; Phase: Rover Movement Prototype (dev test level)
+; ----------------------------------------------------------------
+; Layout (all Y coords, ground surface at Y=550):
+;
+;   x=-400 ──────────── x=560  GAP  x=820 ────── x=5000   <- ground
+;                                      x=1600  Platform A (y=490)  <- short-jump target
+;                                      x=2400  Platform B (y=440)  <- long-jump target
+;
+; Rover starts at x=80, y=534 (lands on left ground immediately)
+; ----------------------------------------------------------------
+; Controls (dev only):
+;   Space         jump
+;   R             restart lane
+;   Esc           quit
+; ----------------------------------------------------------------
+
+[gd_scene load_steps=6 format=3 uid="uid://testlane"]
+
+[ext_resource type="PackedScene" path="res://scenes/player/rover.tscn" id="1"]
+[ext_resource type="Script" path="res://scripts/level/test_lane.gd" id="2"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(960, 40)
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(5000, 40)
+
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(256, 20)
+
+[sub_resource type="RectangleShape2D" id="4"]
+size = Vector2(256, 20)
+
+[node name="TestLane" type="Node2D"]
+script = ExtResource("2")
+
+[node name="SkyLayer" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="Sky" type="ColorRect" parent="SkyLayer"]
+position = Vector2(0, 0)
+size = Vector2(1280, 720)
+color = Color(0.04, 0.04, 0.1, 1)
+
+[node name="GroundLeft" type="StaticBody2D" parent="."]
+position = Vector2(80, 570)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundLeft"]
+shape = SubResource("1")
+
+[node name="Visual" type="Polygon2D" parent="GroundLeft"]
+polygon = PackedVector2Array(-480, -20, 480, -20, 480, 20, -480, 20)
+color = Color(0.28, 0.22, 0.14, 1)
+
+[node name="GroundRight" type="StaticBody2D" parent="."]
+position = Vector2(3320, 570)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundRight"]
+shape = SubResource("2")
+
+[node name="Visual" type="Polygon2D" parent="GroundRight"]
+polygon = PackedVector2Array(-2500, -20, 2500, -20, 2500, 20, -2500, 20)
+color = Color(0.28, 0.22, 0.14, 1)
+
+[node name="GapMarkerLeft" type="Polygon2D" parent="."]
+position = Vector2(562, 550)
+polygon = PackedVector2Array(-2, 0, 2, 0, 2, 30, -2, 30)
+color = Color(0.9, 0.2, 0.1, 1)
+
+[node name="GapMarkerRight" type="Polygon2D" parent="."]
+position = Vector2(818, 550)
+polygon = PackedVector2Array(-2, 0, 2, 0, 2, 30, -2, 30)
+color = Color(0.9, 0.2, 0.1, 1)
+
+[node name="PlatformA" type="StaticBody2D" parent="."]
+position = Vector2(1600, 500)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformA"]
+shape = SubResource("3")
+
+[node name="Visual" type="Polygon2D" parent="PlatformA"]
+polygon = PackedVector2Array(-128, -10, 128, -10, 128, 10, -128, 10)
+color = Color(0.45, 0.35, 0.2, 1)
+
+[node name="Label" type="Label" parent="PlatformA"]
+position = Vector2(-60, -36)
+size = Vector2(120, 24)
+text = "SHORT JUMP"
+horizontal_alignment = 1
+
+[node name="PlatformB" type="StaticBody2D" parent="."]
+position = Vector2(2600, 450)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformB"]
+shape = SubResource("4")
+
+[node name="Visual" type="Polygon2D" parent="PlatformB"]
+polygon = PackedVector2Array(-128, -10, 128, -10, 128, 10, -128, 10)
+color = Color(0.5, 0.4, 0.2, 1)
+
+[node name="Label" type="Label" parent="PlatformB"]
+position = Vector2(-60, -36)
+size = Vector2(120, 24)
+text = "LONG JUMP"
+horizontal_alignment = 1
+
+[node name="Rover" parent="." instance=ExtResource("1")]
+position = Vector2(80, 534)

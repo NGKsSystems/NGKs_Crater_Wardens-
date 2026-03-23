@@ -26,7 +26,7 @@ func set_low_spec_mode(enabled: bool) -> void:
 		particles_enabled = true
 		background_layers = 3
 	_apply_settings()
-	emit_signal("performance_mode_changed", enabled)
+	performance_mode_changed.emit(enabled)
 
 func _apply_settings() -> void:
-	Engine.target_fps = target_fps
+	Engine.max_fps = target_fps

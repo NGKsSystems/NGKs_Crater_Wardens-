@@ -15,16 +15,16 @@ func reset() -> void:
 	score = 0
 	checkpoint_count = 0
 	distance = 0.0
-	emit_signal("score_changed", score)
+	score_changed.emit(score)
 
 func add_enemy_score(value: int) -> void:
 	score += value
-	emit_signal("score_changed", score)
+	score_changed.emit(score)
 
 func add_checkpoint_score(value: int) -> void:
 	score += value
 	checkpoint_count += 1
-	emit_signal("score_changed", score)
+	score_changed.emit(score)
 
 func add_distance_score(delta_distance: float) -> void:
 	# Called each physics frame with rover travel delta — accumulate
@@ -33,11 +33,11 @@ func add_distance_score(delta_distance: float) -> void:
 	if dist_points > 0:
 		score += dist_points
 		distance = fmod(distance, 10.0)
-		emit_signal("score_changed", score)
+		score_changed.emit(score)
 
 func add_stage_clear_bonus(value: int) -> void:
 	score += value
-	emit_signal("score_changed", score)
+	score_changed.emit(score)
 
 func get_score() -> int:
 	return score

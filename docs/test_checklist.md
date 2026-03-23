@@ -5,38 +5,38 @@ Legend: [ ] = not started | [x] = complete | [!] = failed / blocked
 ---
 
 ## Project Setup
-- [ ] Project folder exists
-- [ ] Godot project initialized (project.godot present)
-- [ ] Top-level folder structure created
-- [ ] README.md present
-- [ ] V1_scope_lock.md present
-- [ ] build_plan.md present
-- [ ] control_scheme.md present
-- [ ] performance_budget.md present
-- [ ] test_checklist.md present
+- [x] Project folder exists
+- [x] Godot project initialized (project.godot present)
+- [x] Top-level folder structure created
+- [x] README.md present
+- [x] V1_scope_lock.md present
+- [x] build_plan.md present
+- [x] control_scheme.md present
+- [x] performance_budget.md present
+- [x] test_checklist.md present
 
 ---
 
 ## Input / Core Shell
-- [ ] Input map defined (project.godot InputMap section)
-- [ ] Keyboard bindings assigned
-- [ ] Controller bindings assigned
-- [ ] Main menu scene created
-- [ ] Game root scene created
-- [ ] Pause menu scene created
-- [ ] Settings menu scene created
+- [x] Input map defined (project.godot InputMap section)
+- [x] Keyboard bindings assigned
+- [x] Controller bindings assigned
+- [x] Main menu scene created
+- [x] Game root scene created
+- [x] Pause menu scene created
+- [x] Settings menu scene created
 
 ---
 
 ## Rover / Movement
-- [ ] Rover scene created
-- [ ] Auto-forward movement working
-- [ ] Terrain collision working
-- [ ] Short jump working
-- [ ] Long jump working
-- [ ] Landing response working
-- [ ] Jump feel tuned
-- [ ] Movement feel tuned
+- [x] Rover scene created
+- [x] Auto-forward movement working
+- [x] Terrain collision working
+- [x] Short jump working
+- [x] Long jump working
+- [x] Landing response working
+- [ ] Jump feel tuned          ← requires in-engine play testing
+- [ ] Movement feel tuned     ← requires in-engine play testing
 
 ---
 

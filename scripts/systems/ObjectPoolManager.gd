@@ -11,16 +11,16 @@ func register_pool(key: String, scene: PackedScene, initial_size: int) -> void:
 	_scenes[key] = scene
 	_pools[key] = []
 	for i in range(initial_size):
-		var obj = scene.instance()
+		var obj = scene.instantiate()
 		obj.set_meta("pool_key", key)
 		obj.hide()
 		add_child(obj)
 		_pools[key].append(obj)
 
 func get_object(key: String) -> Node:
-	if not _pools.has(key) or _pools[key].empty():
+	if not _pools.has(key) or _pools[key].is_empty():
 		if _scenes.has(key):
-			var obj = _scenes[key].instance()
+			var obj = _scenes[key].instantiate()
 			obj.set_meta("pool_key", key)
 			add_child(obj)
 			return obj

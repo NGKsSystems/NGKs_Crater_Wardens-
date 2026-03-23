@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RoverData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/RoverData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+move_speed = 240.0
+gravity = 900.0
+jump_force = 520.0
+jump_hold_gravity_scale = 0.38
+jump_hold_max_time = 0.22
+jump_cut_velocity = 260.0
+max_fall_speed = 900.0
+
