@@ -1,4 +1,4 @@
-extends HazardBase
+extends "res://scripts/hazards/hazard_base.gd"
 
 class_name RockObstacle
 

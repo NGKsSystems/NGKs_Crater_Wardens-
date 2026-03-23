@@ -19,5 +19,5 @@ func _unhandled_input(event: InputEvent) -> void:
 # Connected from all hazard Area2D nodes via .tscn [connection] entries.
 func _on_hazard_triggered() -> void:
 	print("[TestLane] DEAD — restarting")
-	get_tree().reload_current_scene()
+	get_tree().call_deferred("reload_current_scene")
 
