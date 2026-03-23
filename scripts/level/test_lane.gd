@@ -5,8 +5,9 @@ extends Node2D
 # Hazard signal handler: _on_hazard_triggered — instant reload on kill
 
 func _ready() -> void:
-	print("[TestLane] Phase 3 — Hazards | R=restart | Esc=quit")
+	print("[TestLane] Phase 4 — Enemies + Hazards | R=restart | Esc=quit")
 	print("[TestLane] Hazards: crater gap x2 | mine | rock obstacle")
+	print("[TestLane] Enemies: drone flyer (aerial/X) | hover attacker (fwd/Z) | ground turret (fwd/Z x2)")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:

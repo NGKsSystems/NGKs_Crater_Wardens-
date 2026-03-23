@@ -1,0 +1,22 @@
+; ground_turret.tscn — NGKs Crater Wardens V1
+; Phase 4: Enemies — static ground threat (forward shot required, 2-hit)
+; Collision: RectangleShape2D 32x36 — detects projectiles + rover contact kill
+; Visual: yellow-brown trapezoid block
+
+[gd_scene load_steps=3 format=3 uid="uid://gndturret01"]
+
+[ext_resource type="Script" path="res://scripts/enemies/ground_turret.gd" id="1"]
+
+[sub_resource type="RectangleShape2D" id="Shape1"]
+size = Vector2(32, 36)
+
+[node name="GroundTurretEnemy" type="Area2D"]
+script = ExtResource("1")
+hit_points = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Shape1")
+
+[node name="Visual" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-16, -18, 16, -18, 20, 18, -20, 18)
+color = Color(0.75, 0.55, 0.1, 1)

@@ -17,13 +17,16 @@
 ; Controls: Space=jump | Z=fire_forward | X=fire_up | R=restart | Esc=quit
 ; ----------------------------------------------------------------
 
-[gd_scene load_steps=10 format=3 uid="uid://testlane"]
+[gd_scene load_steps=13 format=3 uid="uid://testlane"]
 
 [ext_resource type="PackedScene" path="res://scenes/player/rover.tscn" id="1"]
 [ext_resource type="Script"      path="res://scripts/level/test_lane.gd"         id="2"]
 [ext_resource type="PackedScene" path="res://scenes/hazards/crater_gap.tscn"     id="3"]
 [ext_resource type="PackedScene" path="res://scenes/hazards/mine.tscn"           id="4"]
 [ext_resource type="PackedScene" path="res://scenes/hazards/rock_obstacle.tscn"  id="5"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/drone_flyer.tscn"     id="6"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/hover_attacker.tscn"  id="7"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/ground_turret.tscn"   id="8"]
 
 [sub_resource type="RectangleShape2D" id="ShapeGL"]
 size = Vector2(960, 40)
@@ -145,10 +148,22 @@ size = Vector2(120, 24)
 text = "LONG JUMP"
 horizontal_alignment = 1
 
+[node name="DroneFlyerEnemy" parent="." instance=ExtResource("6")]
+position = Vector2(1650, 380)
+
+[node name="HoverAttackerEnemy" parent="." instance=ExtResource("7")]
+position = Vector2(3700, 520)
+
+[node name="GroundTurretEnemy" parent="." instance=ExtResource("8")]
+position = Vector2(4600, 524)
+
 [node name="Rover" parent="." instance=ExtResource("1")]
 position = Vector2(80, 534)
 
 [connection signal="player_killed" from="HazardGap1"   to="." method="_on_hazard_triggered"]
 [connection signal="player_killed" from="Mine"         to="." method="_on_hazard_triggered"]
 [connection signal="player_killed" from="RockObstacle" to="." method="_on_hazard_triggered"]
-[connection signal="player_killed" from="HazardGap2"   to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="HazardGap2"        to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="DroneFlyerEnemy"   to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="HoverAttackerEnemy" to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="GroundTurretEnemy"  to="." method="_on_hazard_triggered"]
