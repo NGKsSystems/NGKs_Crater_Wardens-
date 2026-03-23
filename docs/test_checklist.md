@@ -53,13 +53,13 @@ Legend: [ ] = not started | [x] = complete | [!] = failed / blocked
 ---
 
 ## Hazards
-- [ ] Crater gap created
-- [ ] Mine created
-- [ ] Rock obstacle created
-- [ ] Hazard collision rules working
-- [ ] Hazard spawn logic working
-- [ ] Hazard cleanup working
-- [ ] Readability and fairness verified
+- [x] Crater gap created
+- [x] Mine created
+- [x] Rock obstacle created
+- [x] Hazard collision rules working
+- [ ] Hazard spawn logic working       ← requires SpawnManager (Phase 6)
+- [x] Hazard cleanup working           ← static placed hazards; pool cleanup in Phase 6
+- [ ] Readability and fairness verified ← requires in-engine play testing
 
 ---
 

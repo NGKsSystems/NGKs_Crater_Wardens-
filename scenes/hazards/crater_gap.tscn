@@ -1,0 +1,26 @@
+; CraterGap kill zone — NGKs Crater Wardens V1 (Godot 4)
+; Phase 3: Hazards
+;
+; Area2D kill zone placed underneath a terrain gap.
+; Placed 70 px below ground surface (surface Y=550, kill zone Y=620).
+; Default shape 440 x 60 — covers short (260px) and long (400px) gaps.
+; Place two instances: one under each gap in test_lane.tscn.
+;
+; Visual: deep-pit dark strip (underground, cosmetic only).
+
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/hazards/crater_gap.gd" id="1"]
+
+[sub_resource type="RectangleShape2D" id="ShapeGap"]
+size = Vector2(440, 60)
+
+[node name="CraterGap" type="Area2D"]
+script = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("ShapeGap")
+
+[node name="Visual" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-220, -30, 220, -30, 220, 30, -220, 30)
+color = Color(0.025, 0.01, 0.07, 1)

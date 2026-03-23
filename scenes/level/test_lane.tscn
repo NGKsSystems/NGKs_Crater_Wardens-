@@ -1,35 +1,43 @@
 ; Test Lane — NGKs Crater Wardens V1
-; Phase: Rover Movement Prototype (dev test level)
+; Phase 3: Hazards prototype (Godot 4)
 ; ----------------------------------------------------------------
-; Layout (all Y coords, ground surface at Y=550):
+; Layout (ground surface at Y=550):
 ;
-;   x=-400 ──────────── x=560  GAP  x=820 ────── x=5000   <- ground
-;                                      x=1600  Platform A (y=490)  <- short-jump target
-;                                      x=2400  Platform B (y=440)  <- long-jump target
+;   x=-400 ── x=560  GAP1(260px)  x=820 ─────── x=2900  GAP2(400px)  x=3300 ──── x=5820
+;    GroundLeft         ↑short      GroundMid       ↑long              GroundRight2
 ;
-; Rover starts at x=80, y=534 (lands on left ground immediately)
+;   Mine:  x=1300  (on GroundMid)
+;   Rock:  x=2100  (on GroundMid)
+;   PlatA: x=1600, y=500  ── SHORT JUMP label (Phase1 legacy)
+;   PlatB: x=2600, y=450  ── LONG JUMP label  (Phase1 legacy)
+;
+;   HazardGap1: kill zone at (690,  620) below Gap1
+;   HazardGap2: kill zone at (3100, 620) below Gap2
 ; ----------------------------------------------------------------
-; Controls (dev only):
-;   Space         jump
-;   R             restart lane
-;   Esc           quit
+; Controls: Space=jump | Z=fire_forward | X=fire_up | R=restart | Esc=quit
 ; ----------------------------------------------------------------
 
-[gd_scene load_steps=6 format=3 uid="uid://testlane"]
+[gd_scene load_steps=10 format=3 uid="uid://testlane"]
 
 [ext_resource type="PackedScene" path="res://scenes/player/rover.tscn" id="1"]
-[ext_resource type="Script" path="res://scripts/level/test_lane.gd" id="2"]
+[ext_resource type="Script"      path="res://scripts/level/test_lane.gd"         id="2"]
+[ext_resource type="PackedScene" path="res://scenes/hazards/crater_gap.tscn"     id="3"]
+[ext_resource type="PackedScene" path="res://scenes/hazards/mine.tscn"           id="4"]
+[ext_resource type="PackedScene" path="res://scenes/hazards/rock_obstacle.tscn"  id="5"]
 
-[sub_resource type="RectangleShape2D" id="1"]
+[sub_resource type="RectangleShape2D" id="ShapeGL"]
 size = Vector2(960, 40)
 
-[sub_resource type="RectangleShape2D" id="2"]
-size = Vector2(5000, 40)
+[sub_resource type="RectangleShape2D" id="ShapeGM"]
+size = Vector2(2080, 40)
 
-[sub_resource type="RectangleShape2D" id="3"]
+[sub_resource type="RectangleShape2D" id="ShapeGR"]
+size = Vector2(2520, 40)
+
+[sub_resource type="RectangleShape2D" id="ShapePA"]
 size = Vector2(256, 20)
 
-[sub_resource type="RectangleShape2D" id="4"]
+[sub_resource type="RectangleShape2D" id="ShapePB"]
 size = Vector2(256, 20)
 
 [node name="TestLane" type="Node2D"]
@@ -47,37 +55,69 @@ color = Color(0.04, 0.04, 0.1, 1)
 position = Vector2(80, 570)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundLeft"]
-shape = SubResource("1")
+shape = SubResource("ShapeGL")
 
 [node name="Visual" type="Polygon2D" parent="GroundLeft"]
 polygon = PackedVector2Array(-480, -20, 480, -20, 480, 20, -480, 20)
 color = Color(0.28, 0.22, 0.14, 1)
 
-[node name="GroundRight" type="StaticBody2D" parent="."]
-position = Vector2(3320, 570)
+[node name="GroundMid" type="StaticBody2D" parent="."]
+position = Vector2(1860, 570)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundRight"]
-shape = SubResource("2")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundMid"]
+shape = SubResource("ShapeGM")
 
-[node name="Visual" type="Polygon2D" parent="GroundRight"]
-polygon = PackedVector2Array(-2500, -20, 2500, -20, 2500, 20, -2500, 20)
+[node name="Visual" type="Polygon2D" parent="GroundMid"]
+polygon = PackedVector2Array(-1040, -20, 1040, -20, 1040, 20, -1040, 20)
 color = Color(0.28, 0.22, 0.14, 1)
 
-[node name="GapMarkerLeft" type="Polygon2D" parent="."]
+[node name="GroundRight2" type="StaticBody2D" parent="."]
+position = Vector2(4560, 570)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundRight2"]
+shape = SubResource("ShapeGR")
+
+[node name="Visual" type="Polygon2D" parent="GroundRight2"]
+polygon = PackedVector2Array(-1260, -20, 1260, -20, 1260, 20, -1260, 20)
+color = Color(0.28, 0.22, 0.14, 1)
+
+[node name="Gap1MarkerLeft" type="Polygon2D" parent="."]
 position = Vector2(562, 550)
-polygon = PackedVector2Array(-2, 0, 2, 0, 2, 30, -2, 30)
+polygon = PackedVector2Array(-2, 0, 2, 0, 2, 40, -2, 40)
 color = Color(0.9, 0.2, 0.1, 1)
 
-[node name="GapMarkerRight" type="Polygon2D" parent="."]
+[node name="Gap1MarkerRight" type="Polygon2D" parent="."]
 position = Vector2(818, 550)
-polygon = PackedVector2Array(-2, 0, 2, 0, 2, 30, -2, 30)
+polygon = PackedVector2Array(-2, 0, 2, 0, 2, 40, -2, 40)
 color = Color(0.9, 0.2, 0.1, 1)
+
+[node name="Gap2MarkerLeft" type="Polygon2D" parent="."]
+position = Vector2(2900, 550)
+polygon = PackedVector2Array(-2, 0, 2, 0, 2, 40, -2, 40)
+color = Color(0.9, 0.1, 0.05, 1)
+
+[node name="Gap2MarkerRight" type="Polygon2D" parent="."]
+position = Vector2(3300, 550)
+polygon = PackedVector2Array(-2, 0, 2, 0, 2, 40, -2, 40)
+color = Color(0.9, 0.1, 0.05, 1)
+
+[node name="HazardGap1" parent="." instance=ExtResource("3")]
+position = Vector2(690, 620)
+
+[node name="Mine" parent="." instance=ExtResource("4")]
+position = Vector2(1300, 536)
+
+[node name="RockObstacle" parent="." instance=ExtResource("5")]
+position = Vector2(2100, 524)
+
+[node name="HazardGap2" parent="." instance=ExtResource("3")]
+position = Vector2(3100, 620)
 
 [node name="PlatformA" type="StaticBody2D" parent="."]
 position = Vector2(1600, 500)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformA"]
-shape = SubResource("3")
+shape = SubResource("ShapePA")
 
 [node name="Visual" type="Polygon2D" parent="PlatformA"]
 polygon = PackedVector2Array(-128, -10, 128, -10, 128, 10, -128, 10)
@@ -93,7 +133,7 @@ horizontal_alignment = 1
 position = Vector2(2600, 450)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformB"]
-shape = SubResource("4")
+shape = SubResource("ShapePB")
 
 [node name="Visual" type="Polygon2D" parent="PlatformB"]
 polygon = PackedVector2Array(-128, -10, 128, -10, 128, 10, -128, 10)
@@ -107,3 +147,8 @@ horizontal_alignment = 1
 
 [node name="Rover" parent="." instance=ExtResource("1")]
 position = Vector2(80, 534)
+
+[connection signal="player_killed" from="HazardGap1"   to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="Mine"         to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="RockObstacle" to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="HazardGap2"   to="." method="_on_hazard_triggered"]
