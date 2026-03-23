@@ -41,14 +41,14 @@ Legend: [ ] = not started | [x] = complete | [!] = failed / blocked
 ---
 
 ## Weapons
-- [ ] Forward projectile scene created
-- [ ] Upward projectile scene created
-- [ ] Forward fire input working
-- [ ] Upward fire input working
-- [ ] Fire cooldowns working
-- [ ] Projectile hit detection working
-- [ ] Projectile cleanup working
-- [ ] Projectile pooling confirmed (no instance() during gameplay)
+- [x] Forward projectile scene created
+- [x] Upward projectile scene created
+- [x] Forward fire input working
+- [x] Upward fire input working
+- [x] Fire cooldowns working
+- [ ] Projectile hit detection working    ← requires enemies (Phase 5)
+- [x] Projectile cleanup working
+- [x] Projectile pooling confirmed (no instantiate() during gameplay)
 
 ---
 

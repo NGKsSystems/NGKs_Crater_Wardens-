@@ -1,8 +1,9 @@
 ; Rover scene — NGKs Crater Wardens V1 (Godot 4)
 
-[gd_scene load_steps=3 format=3 uid="uid://rover"]
+[gd_scene load_steps=4 format=3 uid="uid://rover"]
 
 [ext_resource type="Script" path="res://scripts/player/rover_controller.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/player/rover_weapon.gd" id="2"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(40, 24)
@@ -25,3 +26,12 @@ drag_left_margin = 0.2
 drag_right_margin = 0.3
 drag_top_margin = 0.2
 drag_bottom_margin = 0.2
+
+[node name="RoverWeapon" type="Node" parent="."]
+script = ExtResource("2")
+
+[node name="MuzzleForward" type="Marker2D" parent="RoverWeapon"]
+position = Vector2(22, -4)
+
+[node name="MuzzleUp" type="Marker2D" parent="RoverWeapon"]
+position = Vector2(0, -14)

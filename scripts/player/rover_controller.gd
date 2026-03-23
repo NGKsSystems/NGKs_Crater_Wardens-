@@ -27,6 +27,8 @@ var _jump_held: bool        = false
 var _jump_hold_timer: float = 0.0
 var _was_on_floor: bool     = true
 
+@onready var _weapon: Node = $RoverWeapon
+
 signal landed
 signal jumped_short
 signal jumped_long
@@ -71,6 +73,13 @@ func _physics_process(delta: float) -> void:
 	velocity.x = move_speed
 
 	move_and_slide()
+
+	# Weapon — tick cooldowns and handle fire inputs (hold to sustain fire rate)
+	_weapon.tick(delta)
+	if Input.is_action_pressed("fire_forward"):
+		_weapon.try_fire_forward()
+	if Input.is_action_pressed("fire_up"):
+		_weapon.try_fire_up()
 
 
 func _cut_jump() -> void:
