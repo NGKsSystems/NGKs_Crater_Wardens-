@@ -69,12 +69,14 @@ func _fire(key: String, fallback_scene: PackedScene, vel: Vector2, life: float, 
 	if muzzle == null:
 		push_error("[Weapon] muzzle null — check MuzzleForward/MuzzleUp in rover.tscn")
 		return
+	# RoverWeapon is a plain Node (no 2D transform), so muzzle.global_position equals its
+	# local offset only. Compute true world spawn position via the rover (CharacterBody2D) parent.
+	var spawn_pos: Vector2 = get_parent().global_position + muzzle.position
 	var proj: Node = ObjectPoolManager.get_object(key)
 	if proj == null:
-		# Pool returned null — guaranteed fallback: instantiate directly and parent to pool manager
 		push_warning("[Weapon] pool '%s' null — emergency instantiate" % key)
 		proj = fallback_scene.instantiate()
 		proj.set_meta("pool_key", key)
 		ObjectPoolManager.add_child(proj)
-	proj.activate(muzzle.global_position, vel, life)
-	print("[Weapon] spawned %s pos=%s" % [key, str(muzzle.global_position)])
+	proj.activate(spawn_pos, vel, life)
+	print("[Weapon] spawned %s pos=%s" % [key, str(spawn_pos)])
