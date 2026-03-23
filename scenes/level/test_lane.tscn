@@ -17,7 +17,7 @@
 ; Controls: Space=jump | Z=fire_forward | X=fire_up | R=restart | Esc=quit
 ; ----------------------------------------------------------------
 
-[gd_scene load_steps=13 format=3 uid="uid://testlane"]
+[gd_scene load_steps=16 format=3 uid="uid://testlane"]
 
 [ext_resource type="PackedScene" path="res://scenes/player/rover.tscn" id="1"]
 [ext_resource type="Script"      path="res://scripts/level/test_lane.gd"         id="2"]
@@ -27,6 +27,8 @@
 [ext_resource type="PackedScene" path="res://scenes/enemies/drone_flyer.tscn"     id="6"]
 [ext_resource type="PackedScene" path="res://scenes/enemies/hover_attacker.tscn"  id="7"]
 [ext_resource type="PackedScene" path="res://scenes/enemies/ground_turret.tscn"   id="8"]
+[ext_resource type="Script"      path="res://scripts/level/stage_controller.gd"   id="9"]
+[ext_resource type="PackedScene" path="res://scenes/level/checkpoint_marker.tscn" id="10"]
 
 [sub_resource type="RectangleShape2D" id="ShapeGL"]
 size = Vector2(960, 40)
@@ -42,6 +44,9 @@ size = Vector2(256, 20)
 
 [sub_resource type="RectangleShape2D" id="ShapePB"]
 size = Vector2(256, 20)
+
+[sub_resource type="RectangleShape2D" id="ShapeFT"]
+size = Vector2(40, 200)
 
 [node name="TestLane" type="Node2D"]
 script = ExtResource("2")
@@ -148,6 +153,41 @@ size = Vector2(120, 24)
 text = "LONG JUMP"
 horizontal_alignment = 1
 
+[node name="StageController" type="Node" parent="."]
+script = ExtResource("9")
+total_checkpoints = 3
+
+[node name="CP1" parent="." instance=ExtResource("10")]
+position = Vector2(500, 484)
+checkpoint_index = 1
+checkpoint_name = "CP1"
+
+[node name="CP2" parent="." instance=ExtResource("10")]
+position = Vector2(2700, 484)
+checkpoint_index = 2
+checkpoint_name = "CP2"
+
+[node name="CP3" parent="." instance=ExtResource("10")]
+position = Vector2(4200, 484)
+checkpoint_index = 3
+checkpoint_name = "CP3"
+
+[node name="FinishTrigger" type="Area2D" parent="."]
+position = Vector2(5600, 484)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishTrigger"]
+shape = SubResource("ShapeFT")
+
+[node name="Visual" type="Polygon2D" parent="FinishTrigger"]
+polygon = PackedVector2Array(-20, -100, 20, -100, 20, 100, -20, 100)
+color = Color(0.95, 0.8, 0.05, 0.9)
+
+[node name="Label" type="Label" parent="FinishTrigger"]
+position = Vector2(-24, -122)
+size = Vector2(72, 20)
+text = "FINISH"
+horizontal_alignment = 1
+
 [node name="DroneFlyerEnemy" parent="." instance=ExtResource("6")]
 position = Vector2(1650, 380)
 
@@ -167,3 +207,7 @@ position = Vector2(80, 534)
 [connection signal="player_killed" from="DroneFlyerEnemy"   to="." method="_on_hazard_triggered"]
 [connection signal="player_killed" from="HoverAttackerEnemy" to="." method="_on_hazard_triggered"]
 [connection signal="player_killed" from="GroundTurretEnemy"  to="." method="_on_hazard_triggered"]
+[connection signal="checkpoint_reached" from="CP1" to="." method="_on_checkpoint_reached"]
+[connection signal="checkpoint_reached" from="CP2" to="." method="_on_checkpoint_reached"]
+[connection signal="checkpoint_reached" from="CP3" to="." method="_on_checkpoint_reached"]
+[connection signal="body_entered" from="FinishTrigger" to="." method="_on_finish_entered"]
