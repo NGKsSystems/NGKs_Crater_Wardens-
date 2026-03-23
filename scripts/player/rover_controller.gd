@@ -17,9 +17,9 @@ extends CharacterBody2D
 
 @export var move_speed: float             = 240.0
 @export var gravity_strength: float       = 900.0
-@export var jump_force: float             = 520.0
-@export var jump_hold_gravity_scale: float = 0.38
-@export var jump_hold_max_time: float     = 0.22
+@export var jump_force: float             = 600.0
+@export var jump_hold_gravity_scale: float = 0.25
+@export var jump_hold_max_time: float     = 0.30
 @export var jump_cut_velocity: float      = 260.0
 @export var max_fall_speed: float         = 900.0
 
@@ -75,6 +75,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	# Weapon — tick cooldowns and handle fire inputs (hold to sustain fire rate)
+	if _weapon == null:
+		push_error("RoverController: _weapon is null — RoverWeapon node missing from rover.tscn")
+		return
 	_weapon.tick(delta)
 	if Input.is_action_pressed("fire_forward"):
 		_weapon.try_fire_forward()

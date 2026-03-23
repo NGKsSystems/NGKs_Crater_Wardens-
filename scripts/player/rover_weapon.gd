@@ -63,7 +63,11 @@ func try_fire_up() -> void:
 
 
 func _fire(key: String, vel: Vector2, life: float, muzzle: Marker2D) -> void:
+	if muzzle == null:
+		push_error("RoverWeapon: muzzle node is null — MuzzleForward/MuzzleUp missing from rover.tscn")
+		return
 	var proj = ObjectPoolManager.get_object(key)
 	if proj == null:
+		push_warning("RoverWeapon: pool '%s' exhausted — projectile not fired" % key)
 		return
 	proj.activate(muzzle.global_position, vel, life)

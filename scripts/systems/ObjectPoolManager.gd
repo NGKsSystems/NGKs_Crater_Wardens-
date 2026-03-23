@@ -8,6 +8,10 @@ var _pools: Dictionary = {}
 var _scenes: Dictionary = {}
 
 func register_pool(key: String, scene: PackedScene, initial_size: int) -> void:
+	# If already registered, free orphaned pool nodes to prevent accumulation on scene reload
+	if _pools.has(key):
+		for obj in _pools[key]:
+			obj.queue_free()
 	_scenes[key] = scene
 	_pools[key] = []
 	for i in range(initial_size):
