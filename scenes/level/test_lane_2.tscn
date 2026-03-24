@@ -31,7 +31,7 @@
 [ext_resource type="Script"      path="res://scripts/level/stage_controller.gd"   id="8"]
 [ext_resource type="PackedScene" path="res://scenes/level/checkpoint_marker.tscn"  id="9"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn"                   id="10"]
-[ext_resource type="PackedScene" path="res://scenes/environment/mars_background.tscn" id="11"]
+[ext_resource type="PackedScene" path="res://scenes/environment/MarsBackground.tscn" id="11"]
 
 [sub_resource type="RectangleShape2D" id="ShapeG2L"]
 size = Vector2(2300, 40)
@@ -53,6 +53,7 @@ script = ExtResource("2")
 
 [node name="HUD" parent="." instance=ExtResource("10")]
 [node name="MarsBackground" parent="." instance=ExtResource("11")]
+camera_path = NodePath("../Rover/Camera2D")
 
 [node name="SkyLayer" type="CanvasLayer" parent="."]
 layer = -10

@@ -1,0 +1,8 @@
+{
+  "phase": "12",
+  "name": "visual_identity_implementation",
+  "date": "2026-03-24",
+  "objective": "Implement Maxwell visual scene, MarsBackground scene, integrate into rover and all 3 levels",
+  "scope": "visual-only",
+  "docs_read": ["docs/V1_scope_lock.md","docs/build_plan.md","docs/control_scheme.md","docs/performance_budget.md","docs/test_checklist.md","README.md"]
+}

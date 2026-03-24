@@ -1,0 +1,32 @@
+STEP: File Creation and Modification
+STATUS: PASS
+
+FILES CREATED:
+  scripts/environment/mars_background.gd
+    - extends ParallaxBackground with camera_path export
+    - manual scroll_offset driven by Camera2D
+    - fallback: slow drift when no camera set
+
+FILES MODIFIED:
+  scenes/player/rover.tscn
+    - load_steps: 4 → 5
+    - Added ext_resource id=3: res://scenes/player/Maxwell.tscn
+    - Added node: MaxwellVisual (parent=., instance=ExtResource("3"))
+      position = Vector2(0, -10), scale = Vector2(0.75, 0.75)
+
+  scenes/level/test_lane.tscn
+    - ext_resource id=12: mars_background.tscn → MarsBackground.tscn
+    - MarsBackground node: added camera_path = NodePath("../Rover/Camera2D")
+
+  scenes/level/test_lane_2.tscn
+    - ext_resource id=11: mars_background.tscn → MarsBackground.tscn
+    - MarsBackground node: added camera_path = NodePath("../Rover/Camera2D")
+
+  scenes/level/test_lane_3.tscn
+    - ext_resource id=11: mars_background.tscn → MarsBackground.tscn
+    - MarsBackground node: added camera_path = NodePath("../Rover/Camera2D")
+
+PRE-EXISTING (not modified — already correct):
+  scenes/player/Maxwell.tscn
+  scripts/player/maxwell_visual.gd
+  scenes/environment/MarsBackground.tscn

@@ -1,0 +1,14 @@
+DOCS READ:
+[PASS] docs/V1_scope_lock.md
+[PASS] docs/build_plan.md
+[PASS] docs/control_scheme.md
+[PASS] docs/performance_budget.md
+[PASS] docs/test_checklist.md
+[PASS] README.md
+
+PRE-EXISTING FILES AUDITED:
+[PASS] scenes/player/Maxwell.tscn — full astronaut visual (BodyAnchor + Helmet/Visor/Body/Arms/Legs/Blaster)
+[PASS] scripts/player/maxwell_visual.gd — bob, visor pulse, arm swing
+[PASS] scenes/environment/MarsBackground.tscn — 5-layer rich parallax (SkyLayer, FarMountains, MidRocks, Structures, NearDust)
+[INFO] scripts/enviroment/mars_background.gd — EXISTS but at WRONG PATH (typo: enviroment not environment)
+       MarsBackground.tscn references res://scripts/environment/mars_background.gd (correct spelling) — BROKEN until fixed

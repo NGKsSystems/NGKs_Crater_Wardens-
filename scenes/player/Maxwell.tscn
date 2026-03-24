@@ -1,0 +1,86 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/player/maxwell_visual.gd" id="1"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(30, 44)
+
+[node name="Maxwell" type="Node2D"]
+script = ExtResource("1")
+
+[node name="BodyAnchor" type="Node2D" parent="."]
+position = Vector2(0, -18)
+
+[node name="Helmet" type="Polygon2D" parent="BodyAnchor"]
+color = Color(0.88, 0.84, 0.78, 1)
+polygon = PackedVector2Array(-16, -18, 10, -18, 16, -10, 16, 6, 12, 12, -14, 12, -18, 4, -18, -10)
+
+[node name="Visor" type="Polygon2D" parent="BodyAnchor/Helmet"]
+color = Color(0.35, 0.95, 1, 1)
+polygon = PackedVector2Array(-10, -8, 8, -8, 10, -3, 10, 2, 8, 5, -10, 5, -12, 1, -12, -4)
+
+[node name="HelmetShadow" type="Polygon2D" parent="BodyAnchor/Helmet"]
+color = Color(0.68, 0.62, 0.56, 1)
+polygon = PackedVector2Array(8, -16, 16, -10, 16, 6, 12, 12, 4, 12, 8, 6, 10, 0, 10, -8)
+
+[node name="Body" type="Polygon2D" parent="BodyAnchor"]
+position = Vector2(0, 21)
+color = Color(0.8, 0.77, 0.72, 1)
+polygon = PackedVector2Array(-13, -10, 11, -10, 14, -2, 12, 13, -10, 13, -14, 4)
+
+[node name="ChestPanel" type="Polygon2D" parent="BodyAnchor/Body"]
+color = Color(0.24, 0.28, 0.31, 1)
+polygon = PackedVector2Array(-6, -5, 4, -5, 6, 0, 4, 7, -6, 7, -8, 1)
+
+[node name="ArmL" type="Polygon2D" parent="BodyAnchor"]
+position = Vector2(-15, 18)
+color = Color(0.62, 0.58, 0.54, 1)
+polygon = PackedVector2Array(-4, -6, 2, -6, 4, 6, -2, 8)
+
+[node name="ArmR" type="Polygon2D" parent="BodyAnchor"]
+position = Vector2(14, 18)
+color = Color(0.62, 0.58, 0.54, 1)
+polygon = PackedVector2Array(-2, -6, 4, -6, 2, 8, -4, 6)
+
+[node name="Blaster" type="Polygon2D" parent="BodyAnchor"]
+position = Vector2(18, 22)
+color = Color(0.22, 0.24, 0.27, 1)
+polygon = PackedVector2Array(-4, -4, 10, -4, 14, -1, 14, 2, 10, 5, -4, 5, -6, 1)
+
+[node name="BlasterGlow" type="Polygon2D" parent="BodyAnchor/Blaster"]
+color = Color(0.35, 0.95, 1, 0.9)
+polygon = PackedVector2Array(8, -1, 12, -1, 12, 2, 8, 2)
+
+[node name="LegL" type="Polygon2D" parent="BodyAnchor"]
+position = Vector2(-7, 40)
+color = Color(0.34, 0.31, 0.29, 1)
+polygon = PackedVector2Array(-5, -6, 1, -6, 3, 10, -3, 10)
+
+[node name="LegR" type="Polygon2D" parent="BodyAnchor"]
+position = Vector2(7, 40)
+color = Color(0.34, 0.31, 0.29, 1)
+polygon = PackedVector2Array(-3, -6, 3, -6, 5, 10, -1, 10)
+
+[node name="BootL" type="Polygon2D" parent="BodyAnchor"]
+position = Vector2(-8, 51)
+color = Color(0.16, 0.15, 0.15, 1)
+polygon = PackedVector2Array(-6, -2, 4, -2, 6, 2, -6, 2)
+
+[node name="BootR" type="Polygon2D" parent="BodyAnchor"]
+position = Vector2(8, 51)
+color = Color(0.16, 0.15, 0.15, 1)
+polygon = PackedVector2Array(-6, -2, 6, -2, 6, 2, -4, 2)
+
+[node name="Antenna" type="Line2D" parent="BodyAnchor/Helmet"]
+width = 2.0
+default_color = Color(0.62, 0.58, 0.54, 1)
+points = PackedVector2Array(10, -16, 14, -24)
+
+[node name="AntennaTip" type="Polygon2D" parent="BodyAnchor/Helmet"]
+color = Color(0.35, 0.95, 1, 1)
+polygon = PackedVector2Array(12, -27, 16, -27, 16, -23, 12, -23)
+
+[node name="HitboxGuide" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("1")
+position = Vector2(0, 6)
