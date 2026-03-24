@@ -14,7 +14,15 @@ offset_left = -8000.0
 offset_top = -2000.0
 offset_right = 8000.0
 offset_bottom = 2000.0
-color = Color(0.76, 0.41, 0.23, 1)
+color = Color(0.36, 0.12, 0.06, 1)
+
+[node name="SkyGradientTop" type="Polygon2D" parent="SkyLayer"]
+color = Color(0.88, 0.55, 0.30, 0.72)
+polygon = PackedVector2Array(-8000, -2000, 8000, -2000, 8000, -400, -8000, -400)
+
+[node name="SkyGradientMid" type="Polygon2D" parent="SkyLayer"]
+color = Color(0.70, 0.34, 0.17, 0.55)
+polygon = PackedVector2Array(-8000, -400, 8000, -400, 8000, 200, -8000, 200)
 
 [node name="UpperHaze" type="Polygon2D" parent="SkyLayer"]
 color = Color(0.86, 0.56, 0.33, 0.38)
@@ -30,7 +38,7 @@ color = Color(1, 0.74, 0.42, 0.22)
 polygon = PackedVector2Array(-180, 0, -120, -120, 0, -180, 120, -120, 180, 0, 120, 120, 0, 180, -120, 120)
 
 [node name="FarMountains" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(0.08, 0.0)
+motion_scale = Vector2(0.1, 0.0)
 
 [node name="FarMountainRangeA" type="Polygon2D" parent="FarMountains"]
 color = Color(0.39, 0.16, 0.13, 1)
@@ -122,7 +130,7 @@ polygon = PackedVector2Array(
 )
 
 [node name="MidRocks" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(0.18, 0.0)
+motion_scale = Vector2(0.2, 0.0)
 
 [node name="MidRockA" type="Polygon2D" parent="MidRocks"]
 position = Vector2(600, 455)
@@ -187,8 +195,43 @@ position = Vector2(4280, 500)
 color = Color(0.18, 0.17, 0.17, 0.95)
 polygon = PackedVector2Array(-8, -40, 8, -40, 8, 20, -8, 20)
 
+[node name="AntennaA" type="Polygon2D" parent="Structures"]
+position = Vector2(680, 430)
+color = Color(0.13, 0.12, 0.12, 0.95)
+polygon = PackedVector2Array(-2, 90, 2, 90, 1, -75, -1, -75)
+
+[node name="AntennaTipA" type="Polygon2D" parent="Structures"]
+position = Vector2(680, 354)
+color = Color(0.28, 0.85, 0.92, 0.70)
+polygon = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)
+
+[node name="AntennaB" type="Polygon2D" parent="Structures"]
+position = Vector2(3650, 440)
+color = Color(0.12, 0.11, 0.11, 0.92)
+polygon = PackedVector2Array(-2, 85, 2, 85, 1, -60, -1, -60)
+
+[node name="AntennaBCross" type="Polygon2D" parent="Structures"]
+position = Vector2(3650, 386)
+color = Color(0.18, 0.17, 0.17, 0.92)
+polygon = PackedVector2Array(-22, -3, 22, -3, 22, 3, -22, 3)
+
+[node name="PipeRunB" type="Polygon2D" parent="Structures"]
+position = Vector2(5500, 508)
+color = Color(0.14, 0.13, 0.13, 0.90)
+polygon = PackedVector2Array(-200, -7, 200, -7, 200, 7, -200, 7)
+
+[node name="PipeRunBSupportA" type="Polygon2D" parent="Structures"]
+position = Vector2(5340, 496)
+color = Color(0.17, 0.16, 0.16, 0.90)
+polygon = PackedVector2Array(-5, -32, 5, -32, 5, 16, -5, 16)
+
+[node name="PipeRunBSupportB" type="Polygon2D" parent="Structures"]
+position = Vector2(5660, 496)
+color = Color(0.17, 0.16, 0.16, 0.90)
+polygon = PackedVector2Array(-5, -32, 5, -32, 5, 16, -5, 16)
+
 [node name="NearDust" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(0.42, 0.0)
+motion_scale = Vector2(0.4, 0.0)
 
 [node name="ForegroundRidgeA" type="Polygon2D" parent="NearDust"]
 position = Vector2(700, 585)
@@ -214,3 +257,21 @@ polygon = PackedVector2Array(-180, -10, 180, -18, 180, 10, -180, 18)
 position = Vector2(3600, 548)
 color = Color(0.82, 0.42, 0.23, 0.14)
 polygon = PackedVector2Array(-220, -8, 220, -16, 220, 12, -220, 18)
+
+[node name="AtmoDustA" type="Polygon2D" parent="NearDust"]
+position = Vector2(2200, 310)
+color = Color(0.74, 0.32, 0.18, 0.10)
+polygon = PackedVector2Array(-580, -10, 580, -18, 580, 18, -580, 26)
+
+[node name="AtmoDustB" type="Polygon2D" parent="NearDust"]
+position = Vector2(4900, 260)
+color = Color(0.66, 0.28, 0.16, 0.08)
+polygon = PackedVector2Array(-480, -8, 480, -14, 480, 14, -480, 20)
+
+[node name="GroundEdge" type="Polygon2D" parent="NearDust"]
+color = Color(0.28, 0.10, 0.07, 0.55)
+polygon = PackedVector2Array(-8000, 558, 8000, 558, 8000, 578, -8000, 578)
+
+[node name="GroundFill" type="Polygon2D" parent="NearDust"]
+color = Color(0.09, 0.04, 0.02, 0.92)
+polygon = PackedVector2Array(-8000, 574, 8000, 574, 8000, 900, -8000, 900)
