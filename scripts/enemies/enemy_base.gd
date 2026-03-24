@@ -20,7 +20,8 @@ extends Area2D
 
 signal player_killed
 
-@export var hit_points: int = 1
+@export var hit_points:   int = 1
+@export var score_value:  int = 50
 
 var _hp: int       = 1
 var _active: bool  = true   # true on scene load; false after death
@@ -67,3 +68,4 @@ func _consume_projectile(proj: Area2D) -> void:
 func _on_hit() -> void:
 	_active = false
 	hide()
+	ScoreManager.add_enemy_score(score_value)

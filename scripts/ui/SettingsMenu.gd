@@ -35,7 +35,7 @@ func _on_volume_changed(value: float) -> void:
 	_save_settings()
 
 func _on_back() -> void:
-	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
+	get_tree().change_scene_to_file(GameStateManager.settings_back_target)
 
 func _save_settings() -> void:
 	var cfg = ConfigFile.new()

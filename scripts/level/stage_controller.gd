@@ -14,9 +14,12 @@ extends Node
 # Reset: scene reload destroys this node — all state resets automatically
 # ============================================================
 
+signal stage_complete_announced
+
 @export var total_checkpoints: int = 3
 
-var _expected: int      = 1
+var _expected: int       = 1
+var cleared:   int       = 0
 var stage_complete: bool = false
 
 
@@ -26,7 +29,8 @@ func on_checkpoint(index: int) -> void:
 		return
 	if index == _expected:
 		_expected += 1
-		print("[Stage] CP%d PASS — %d/%d checkpoints cleared" % [index, _expected - 1, total_checkpoints])
+		cleared += 1
+		print("[Stage] CP%d PASS — %d/%d checkpoints cleared" % [index, cleared, total_checkpoints])
 	else:
 		print("[Stage] CP%d ignored — expected CP%d" % [index, _expected])
 
@@ -38,5 +42,6 @@ func on_finish() -> void:
 	if _expected > total_checkpoints:
 		stage_complete = true
 		print("[Stage] *** STAGE COMPLETE — all %d checkpoints cleared! ***" % total_checkpoints)
+		stage_complete_announced.emit()
 	else:
 		print("[Stage] Finish reached early — %d/%d checkpoints — ignored" % [_expected - 1, total_checkpoints])

@@ -17,7 +17,7 @@
 ; Controls: Space=jump | Z=fire_forward | X=fire_up | R=restart | Esc=quit
 ; ----------------------------------------------------------------
 
-[gd_scene load_steps=16 format=3 uid="uid://testlane"]
+[gd_scene load_steps=17 format=3 uid="uid://testlane"]
 
 [ext_resource type="PackedScene" path="res://scenes/player/rover.tscn" id="1"]
 [ext_resource type="Script"      path="res://scripts/level/test_lane.gd"         id="2"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" path="res://scenes/enemies/ground_turret.tscn"   id="8"]
 [ext_resource type="Script"      path="res://scripts/level/stage_controller.gd"   id="9"]
 [ext_resource type="PackedScene" path="res://scenes/level/checkpoint_marker.tscn" id="10"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn"                   id="11"]
 
 [sub_resource type="RectangleShape2D" id="ShapeGL"]
 size = Vector2(960, 40)
@@ -50,6 +51,8 @@ size = Vector2(40, 200)
 
 [node name="TestLane" type="Node2D"]
 script = ExtResource("2")
+
+[node name="HUD" parent="." instance=ExtResource("11")]
 
 [node name="SkyLayer" type="CanvasLayer" parent="."]
 layer = -10

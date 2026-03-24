@@ -6,6 +6,7 @@ extends Node
 enum State { MENU, PLAYING, PAUSED, DEAD, GAME_OVER, STAGE_CLEAR }
 
 var current_state: int = State.MENU
+var settings_back_target: String = "res://scenes/ui/main_menu.tscn"
 
 signal state_changed(new_state)
 

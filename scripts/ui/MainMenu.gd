@@ -14,6 +14,7 @@ func _on_play() -> void:
 	get_tree().change_scene_to_file("res://scenes/root/game_root.tscn")
 
 func _on_settings() -> void:
+	GameStateManager.settings_back_target = "res://scenes/ui/main_menu.tscn"
 	get_tree().change_scene_to_file("res://scenes/ui/settings_menu.tscn")
 
 func _on_quit() -> void:
