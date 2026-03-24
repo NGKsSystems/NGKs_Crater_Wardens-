@@ -14,14 +14,14 @@ offset_left = -8000.0
 offset_top = -2500.0
 offset_right = 8000.0
 offset_bottom = -150.0
-color = Color(0.79, 0.42, 0.23, 1)
+color = Color(0.92, 0.58, 0.34, 1)
 
 [node name="SkyMid" type="ColorRect" parent="SkyLayer"]
 offset_left = -8000.0
 offset_top = -150.0
 offset_right = 8000.0
 offset_bottom = 260.0
-color = Color(0.60, 0.27, 0.15, 1)
+color = Color(0.66, 0.32, 0.19, 1)
 
 [node name="SkyLow" type="ColorRect" parent="SkyLayer"]
 offset_left = -8000.0
@@ -31,14 +31,14 @@ offset_bottom = 900.0
 color = Color(0.35, 0.16, 0.12, 1)
 
 [node name="UpperGlow" type="Polygon2D" parent="SkyLayer"]
-color = Color(1, 0.72, 0.4, 0.14)
+color = Color(1, 0.72, 0.4, 0.22)
 polygon = PackedVector2Array(-8000, -900, 8000, -900, 8000, -450, -8000, -650)
 
 [node name="FarMountains" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.12, 0.0)
 
 [node name="MountainRange" type="Polygon2D" parent="FarMountains"]
-color = Color(0.23, 0.10, 0.09, 1)
+color = Color(0.11, 0.05, 0.04, 1)
 polygon = PackedVector2Array(
 -8000, 470,
 -7600, 430,
@@ -84,6 +84,11 @@ polygon = PackedVector2Array(
 8000, 900,
 -8000, 900
 )
+
+[node name="MountainRim" type="Line2D" parent="FarMountains"]
+width = 2.5
+default_color = Color(0.30, 0.14, 0.11, 0.85)
+points = PackedVector2Array(-8000, 470, -7600, 430, -7200, 390, -6800, 450, -6400, 350, -6000, 420, -5600, 300, -5200, 440, -4800, 330, -4400, 410, -4000, 290, -3600, 430, -3200, 340, -2800, 460, -2400, 310, -2000, 390, -1600, 280, -1200, 420, -800, 335, -400, 470, 0, 300, 400, 420, 800, 320, 1200, 450, 1600, 310, 2000, 390, 2400, 280, 2800, 430, 3200, 340, 3600, 470, 4000, 300, 4400, 420, 4800, 315, 5200, 460, 5600, 300, 6000, 400, 6400, 285, 6800, 430, 7200, 330, 7600, 450, 8000, 320)
 
 [node name="Structures" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.25, 0.0)
@@ -144,7 +149,12 @@ polygon = PackedVector2Array(-320, -10, 320, -16, 320, 16, -320, 22)
 [node name="GroundBackLayer" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.18, 0.0)
 
-[node name="GroundBackStrip" type="Polygon2D" parent="GroundBackLayer"]
+[node name="GroundTopHighlight" type="Polygon2D" parent="GroundBackLayer"]
 position = Vector2(0, 610)
-color = Color(0.20, 0.09, 0.08, 0.95)
-polygon = PackedVector2Array(-8000, 0, 8000, 0, 8000, 260, -8000, 260)
+color = Color(0.42, 0.19, 0.15, 0.95)
+polygon = PackedVector2Array(-8000, 0, 8000, 0, 8000, 5, -8000, 5)
+
+[node name="GroundBackStrip" type="Polygon2D" parent="GroundBackLayer"]
+position = Vector2(0, 615)
+color = Color(0.16, 0.07, 0.06, 0.97)
+polygon = PackedVector2Array(-8000, 0, 8000, 0, 8000, 255, -8000, 255)

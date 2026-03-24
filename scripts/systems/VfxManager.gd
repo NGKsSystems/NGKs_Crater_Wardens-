@@ -65,13 +65,9 @@ func _get_large() -> CPUParticles2D:
 func spawn_impact(pos: Vector2) -> void:
 	var p := _get_small()
 	p.global_position      = pos
-	p.color                = Color(1.0, 0.6, 0.1, 1.0)
-	p.initial_velocity_min = 80.0
-	p.initial_velocity_max = 200.0
-	p.restart()
-
-
-# Small grey dust cloud — rover jump or land
+        p.color                = Color(1.0, 0.78, 0.15, 1.0)
+        p.initial_velocity_min = 90.0
+        p.initial_velocity_max = 220.0
 func spawn_poof(pos: Vector2) -> void:
 	var p := _get_small()
 	p.global_position      = pos
@@ -85,17 +81,12 @@ func spawn_poof(pos: Vector2) -> void:
 func spawn_explode(pos: Vector2) -> void:
 	var p := _get_large()
 	p.global_position      = pos
-	p.color                = Color(1.0, 0.3, 0.05, 1.0)
-	p.initial_velocity_min = 100.0
-	p.initial_velocity_max = 280.0
-	p.restart()
-
-
-# Large cyan flash — checkpoint triggered
+        p.color                = Color(1.0, 0.48, 0.05, 1.0)
+        p.initial_velocity_min = 120.0
+        p.initial_velocity_max = 320.0
 func spawn_checkpoint(pos: Vector2) -> void:
 	var p := _get_large()
 	p.global_position      = pos
-	p.color                = Color(0.15, 0.9, 0.95, 1.0)
-	p.initial_velocity_min = 60.0
-	p.initial_velocity_max = 160.0
-	p.restart()
+        p.color                = Color(0.0, 0.95, 1.0, 1.0)
+        p.initial_velocity_min = 70.0
+        p.initial_velocity_max = 180.0

@@ -12,15 +12,15 @@ script = ExtResource("1")
 position = Vector2(0, -18)
 
 [node name="Helmet" type="Polygon2D" parent="BodyAnchor"]
-color = Color(0.88, 0.84, 0.78, 1)
+color = Color(0.96, 0.93, 0.88, 1)
 polygon = PackedVector2Array(-16, -18, 10, -18, 16, -10, 16, 6, 12, 12, -14, 12, -18, 4, -18, -10)
 
 [node name="Visor" type="Polygon2D" parent="BodyAnchor/Helmet"]
-color = Color(0.35, 0.95, 1, 1)
+color = Color(0.05, 0.94, 1, 1)
 polygon = PackedVector2Array(-10, -8, 8, -8, 10, -3, 10, 2, 8, 5, -10, 5, -12, 1, -12, -4)
 
 [node name="HelmetShadow" type="Polygon2D" parent="BodyAnchor/Helmet"]
-color = Color(0.68, 0.62, 0.56, 1)
+color = Color(0.54, 0.48, 0.42, 1)
 polygon = PackedVector2Array(8, -16, 16, -10, 16, 6, 12, 12, 4, 12, 8, 6, 10, 0, 10, -8)
 
 [node name="Body" type="Polygon2D" parent="BodyAnchor"]
