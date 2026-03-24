@@ -1,6 +1,6 @@
-# Dustrunner V1
+# NGKs Crater Wardens V1
 
-Dustrunner V1 is a small, performance-first arcade rover shooter built for non-gaming computers.
+NGKs Crater Wardens V1 is a small, performance-first arcade rover shooter built for non-gaming computers.
 
 ## Design Goal
 Create a fast, modern side-scrolling action game focused entirely on gameplay:

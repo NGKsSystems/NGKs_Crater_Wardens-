@@ -46,7 +46,7 @@ Legend: [ ] = not started | [x] = complete | [!] = failed / blocked
 - [x] Forward fire input working
 - [x] Upward fire input working
 - [x] Fire cooldowns working
-- [ ] Projectile hit detection working    ← requires enemies (Phase 5)
+- [x] Projectile hit detection working
 - [x] Projectile cleanup working
 - [x] Projectile pooling confirmed (no instantiate() during gameplay)
 
@@ -64,77 +64,77 @@ Legend: [ ] = not started | [x] = complete | [!] = failed / blocked
 ---
 
 ## Enemies
-- [ ] Scout drone created
-- [ ] Hover attacker created
-- [ ] Ground turret created
-- [ ] Enemy movement working
-- [ ] Enemy hit/death logic working
-- [ ] Enemy spawn logic working
-- [ ] Enemy cleanup working
-- [ ] Enemy pressure tuned
+- [x] Scout drone created
+- [x] Hover attacker created
+- [x] Ground turret created
+- [x] Enemy movement working
+- [x] Enemy hit/death logic working
+- [ ] Enemy spawn logic working       ← static lane placement; SpawnManager not in V1 scope
+- [x] Enemy cleanup working
+- [ ] Enemy pressure tuned             ← requires in-engine play testing
 
 ---
 
 ## Stage / Progression
-- [ ] Stage scene created
-- [ ] Terrain segment system working
-- [ ] Checkpoint markers present
-- [ ] Checkpoint manager working
-- [ ] Stage progression logic working
-- [ ] Stage completion state working
-- [ ] Endless mode scene created
-- [ ] Endless scaling logic working
+- [x] Stage scene created
+- [ ] Terrain segment system working   ← static single lane; not in V1 scope
+- [x] Checkpoint markers present
+- [x] Checkpoint manager working
+- [x] Stage progression logic working
+- [x] Stage completion state working
+- [ ] Endless mode scene created       ← not in V1 scope
+- [ ] Endless scaling logic working    ← not in V1 scope
 
 ---
 
 ## Score / Flow
-- [ ] Score system created
-- [ ] Enemy score values assigned
-- [ ] Checkpoint score values assigned
-- [ ] Distance score working
-- [ ] Stage clear bonus working
-- [ ] Death state working
-- [ ] Instant restart flow working (< 1 second)
-- [ ] Game over panel working
+- [x] Score system created
+- [x] Enemy score values assigned
+- [x] Checkpoint score values assigned
+- [ ] Distance score working           ← not in V1 scope
+- [x] Stage clear bonus working
+- [ ] Death state working              ← instant restart only; no death screen in V1
+- [x] Instant restart flow working (< 1 second)
+- [ ] Game over panel working          ← not in V1 scope
 
 ---
 
 ## UI / HUD
-- [ ] HUD created
-- [ ] Score display working
-- [ ] Checkpoint display working
-- [ ] Mode label working
-- [ ] Pause menu flow working
-- [ ] Settings UI working
-- [ ] Game over UI working
-- [ ] Keyboard-only menu navigation verified
+- [x] HUD created
+- [x] Score display working
+- [x] Checkpoint display working
+- [ ] Mode label working               ← not in V1 scope
+- [x] Pause menu flow working
+- [ ] Settings UI working              ← scene exists; controls not wired in V1
+- [ ] Game over UI working             ← not in V1 scope
+- [ ] Keyboard-only menu navigation verified  ← requires in-engine play testing
 
 ---
 
 ## Environment / Visuals
-- [ ] Parallax root created
-- [ ] Far background layer created
-- [ ] Mid background layer created
-- [ ] Foreground layer created
-- [ ] Checkpoint visual present
-- [ ] Dust trail effect working
-- [ ] Muzzle flash working
-- [ ] Hit spark working
-- [ ] Explosion effect working
+- [ ] Parallax root created             ← not in V1 scope
+- [ ] Far background layer created     ← not in V1 scope
+- [ ] Mid background layer created     ← not in V1 scope
+- [ ] Foreground layer created         ← not in V1 scope
+- [x] Checkpoint visual present
+- [x] Dust trail effect working
+- [x] Muzzle flash working
+- [x] Hit spark working
+- [x] Explosion effect working
 
 ---
 
 ## Audio
-- [ ] Jump SFX assigned
-- [ ] Forward shot SFX assigned
-- [ ] Upward shot SFX assigned
-- [ ] Hit/destroy SFX assigned
-- [ ] Death SFX assigned
-- [ ] Checkpoint SFX assigned
-- [ ] Menu sounds assigned
-- [ ] Gameplay music loop assigned
-- [ ] Menu music loop assigned
-- [ ] Volume controls working
+- [x] Jump SFX assigned
+- [x] Forward shot SFX assigned
+- [x] Upward shot SFX assigned
+- [x] Hit/destroy SFX assigned
+- [x] Death SFX assigned
+- [x] Checkpoint SFX assigned
+- [ ] Menu sounds assigned             ← not in V1 scope
+- [ ] Gameplay music loop assigned    ← not in V1 scope
+- [ ] Menu music loop assigned        ← not in V1 scope
+- [ ] Volume controls working          ← not in V1 scope
 
 ---
 
