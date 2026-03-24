@@ -19,7 +19,7 @@ shape = SubResource("Shape1")
 
 [node name="Visual" type="Polygon2D" parent="."]
 polygon = PackedVector2Array(-10, -100, 10, -100, 10, 100, -10, 100)
-color = Color(0.15, 0.85, 0.25, 0.85)
+color = Color(0.2, 0.8, 1.0, 0.9)
 
 [node name="Label" type="Label" parent="."]
 position = Vector2(-16, -120)

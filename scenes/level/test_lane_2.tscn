@@ -19,7 +19,7 @@
 ;   Finish: x=4700
 ; ----------------------------------------------------------------
 
-[gd_scene load_steps=15 format=3 uid="uid://testlane2"]
+[gd_scene load_steps=16 format=3 uid="uid://testlane2"]
 
 [ext_resource type="PackedScene" path="res://scenes/player/rover.tscn"             id="1"]
 [ext_resource type="Script"      path="res://scripts/level/test_lane.gd"           id="2"]
@@ -31,6 +31,7 @@
 [ext_resource type="Script"      path="res://scripts/level/stage_controller.gd"   id="8"]
 [ext_resource type="PackedScene" path="res://scenes/level/checkpoint_marker.tscn"  id="9"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn"                   id="10"]
+[ext_resource type="PackedScene" path="res://scenes/environment/mars_background.tscn" id="11"]
 
 [sub_resource type="RectangleShape2D" id="ShapeG2L"]
 size = Vector2(2300, 40)
@@ -51,6 +52,7 @@ size = Vector2(40, 200)
 script = ExtResource("2")
 
 [node name="HUD" parent="." instance=ExtResource("10")]
+[node name="MarsBackground" parent="." instance=ExtResource("11")]
 
 [node name="SkyLayer" type="CanvasLayer" parent="."]
 layer = -10
@@ -58,7 +60,7 @@ layer = -10
 [node name="Sky" type="ColorRect" parent="SkyLayer"]
 position = Vector2(0, 0)
 size = Vector2(1280, 720)
-color = Color(0.04, 0.04, 0.1, 1)
+color = Color(0.28, 0.14, 0.08, 1)
 
 [node name="GroundL2Left" type="StaticBody2D" parent="."]
 position = Vector2(750, 570)
@@ -68,7 +70,7 @@ shape = SubResource("ShapeG2L")
 
 [node name="Visual" type="Polygon2D" parent="GroundL2Left"]
 polygon = PackedVector2Array(-1150, -20, 1150, -20, 1150, 20, -1150, 20)
-color = Color(0.28, 0.22, 0.14, 1)
+color = Color(0.55, 0.30, 0.14, 1)
 
 [node name="GroundL2Mid" type="StaticBody2D" parent="."]
 position = Vector2(3050, 570)
@@ -78,7 +80,7 @@ shape = SubResource("ShapeG2M")
 
 [node name="Visual" type="Polygon2D" parent="GroundL2Mid"]
 polygon = PackedVector2Array(-750, -20, 750, -20, 750, 20, -750, 20)
-color = Color(0.28, 0.22, 0.14, 1)
+color = Color(0.55, 0.30, 0.14, 1)
 
 [node name="GroundL2Right" type="StaticBody2D" parent="."]
 position = Vector2(5200, 570)
@@ -88,27 +90,27 @@ shape = SubResource("ShapeG2R")
 
 [node name="Visual" type="Polygon2D" parent="GroundL2Right"]
 polygon = PackedVector2Array(-1000, -20, 1000, -20, 1000, 20, -1000, 20)
-color = Color(0.28, 0.22, 0.14, 1)
+color = Color(0.55, 0.30, 0.14, 1)
 
 [node name="Gap1MarkerLeft" type="Polygon2D" parent="."]
 position = Vector2(1900, 550)
 polygon = PackedVector2Array(-2, 0, 2, 0, 2, 40, -2, 40)
-color = Color(0.9, 0.2, 0.1, 1)
+color = Color(0.95, 0.85, 0.0, 1)
 
 [node name="Gap1MarkerRight" type="Polygon2D" parent="."]
 position = Vector2(2300, 550)
 polygon = PackedVector2Array(-2, 0, 2, 0, 2, 40, -2, 40)
-color = Color(0.9, 0.2, 0.1, 1)
+color = Color(0.95, 0.85, 0.0, 1)
 
 [node name="Gap2MarkerLeft" type="Polygon2D" parent="."]
 position = Vector2(3800, 550)
 polygon = PackedVector2Array(-2, 0, 2, 0, 2, 40, -2, 40)
-color = Color(0.9, 0.1, 0.05, 1)
+color = Color(0.95, 0.75, 0.0, 1)
 
 [node name="Gap2MarkerRight" type="Polygon2D" parent="."]
 position = Vector2(4200, 550)
 polygon = PackedVector2Array(-2, 0, 2, 0, 2, 40, -2, 40)
-color = Color(0.9, 0.1, 0.05, 1)
+color = Color(0.95, 0.75, 0.0, 1)
 
 [node name="HazardGap1" parent="." instance=ExtResource("3")]
 position = Vector2(2100, 620)
@@ -136,7 +138,7 @@ shape = SubResource("ShapeP2N")
 
 [node name="Visual" type="Polygon2D" parent="PlatL2A"]
 polygon = PackedVector2Array(-64, -10, 64, -10, 64, 10, -64, 10)
-color = Color(0.45, 0.35, 0.2, 1)
+color = Color(0.40, 0.18, 0.08, 1)
 
 [node name="PlatL2B" type="StaticBody2D" parent="."]
 position = Vector2(1420, 490)
@@ -146,7 +148,7 @@ shape = SubResource("ShapeP2N")
 
 [node name="Visual" type="Polygon2D" parent="PlatL2B"]
 polygon = PackedVector2Array(-64, -10, 64, -10, 64, 10, -64, 10)
-color = Color(0.45, 0.35, 0.2, 1)
+color = Color(0.40, 0.18, 0.08, 1)
 
 [node name="PlatL2C" type="StaticBody2D" parent="."]
 position = Vector2(3300, 490)
@@ -156,7 +158,7 @@ shape = SubResource("ShapeP2N")
 
 [node name="Visual" type="Polygon2D" parent="PlatL2C"]
 polygon = PackedVector2Array(-64, -10, 64, -10, 64, 10, -64, 10)
-color = Color(0.5, 0.4, 0.2, 1)
+color = Color(0.40, 0.18, 0.08, 1)
 
 [node name="HoverA" parent="." instance=ExtResource("6")]
 position = Vector2(900, 520)
@@ -206,7 +208,7 @@ shape = SubResource("ShapeFT2")
 
 [node name="Visual" type="Polygon2D" parent="FinishTrigger"]
 polygon = PackedVector2Array(-20, -100, 20, -100, 20, 100, -20, 100)
-color = Color(0.95, 0.8, 0.05, 0.9)
+color = Color(0.0, 0.9, 1.0, 0.9)
 
 [node name="Label" type="Label" parent="FinishTrigger"]
 position = Vector2(-24, -122)

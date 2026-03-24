@@ -1,0 +1,42 @@
+; mars_background.tscn — NGKs Crater Wardens V1
+; Phase 11: Visual Theme Pass
+; ----------------------------------------------------------------
+; Three-layer parallax background creating Mars surface depth.
+; Designed for placement as child of level root Node2D.
+; Camera2D on rover auto-drives parallax scroll.
+;
+; Layer order (CanvasLayer):  this=layer -9 (in front of sky=-10, behind world=0)
+; FarMountains: motion_scale=0.1 → 10% camera speed (very distant)
+; MidRocks:     motion_scale=0.25 → 25% camera speed (medium distance)
+; NearSilhouettes: motion_scale=0.5 → 50% camera speed (close horizon)
+; motion_mirroring=2048 tiles the polygons seamlessly
+; ----------------------------------------------------------------
+
+[gd_scene load_steps=1 format=3 uid="uid://marsbg01"]
+
+[node name="MarsBackground" type="ParallaxBackground"]
+layer = -9
+
+[node name="FarMountains" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.1, 0)
+motion_mirroring = Vector2(2048, 0)
+
+[node name="MountainMesh" type="Polygon2D" parent="FarMountains"]
+polygon = PackedVector2Array(0, 720, 0, 480, 80, 340, 160, 420, 280, 240, 400, 360, 520, 170, 640, 300, 760, 190, 880, 320, 1000, 140, 1120, 260, 1240, 200, 1360, 340, 1480, 220, 1600, 300, 1720, 180, 1860, 280, 1960, 340, 2048, 420, 2048, 720)
+color = Color(0.12, 0.05, 0.02, 1)
+
+[node name="MidRocks" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.25, 0)
+motion_mirroring = Vector2(2048, 0)
+
+[node name="RockMesh" type="Polygon2D" parent="MidRocks"]
+polygon = PackedVector2Array(0, 720, 0, 470, 100, 450, 220, 465, 340, 440, 460, 458, 580, 435, 700, 452, 820, 440, 940, 458, 1060, 436, 1180, 452, 1300, 440, 1420, 455, 1540, 438, 1660, 452, 1780, 440, 1900, 455, 2048, 465, 2048, 720)
+color = Color(0.16, 0.07, 0.03, 1)
+
+[node name="NearSilhouettes" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.5, 0)
+motion_mirroring = Vector2(2048, 0)
+
+[node name="SilhouetteMesh" type="Polygon2D" parent="NearSilhouettes"]
+polygon = PackedVector2Array(0, 720, 0, 510, 100, 502, 200, 510, 350, 495, 500, 508, 650, 496, 800, 508, 950, 495, 1100, 508, 1250, 498, 1400, 508, 1550, 496, 1700, 508, 1850, 498, 2000, 508, 2048, 505, 2048, 720)
+color = Color(0.10, 0.04, 0.02, 1)

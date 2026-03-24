@@ -18,4 +18,4 @@ shape = SubResource("Shape1")
 
 [node name="Visual" type="Polygon2D" parent="."]
 polygon = PackedVector2Array(-14, -6, 0, -14, 14, -6, 14, 6, 0, 14, -14, 6)
-color = Color(0.15, 0.7, 0.95, 1)
+color = Color(0.0, 0.9, 1.0, 1)
