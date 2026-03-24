@@ -42,6 +42,7 @@ func on_finish() -> void:
 	if _expected > total_checkpoints:
 		stage_complete = true
 		print("[Stage] *** STAGE COMPLETE — all %d checkpoints cleared! ***" % total_checkpoints)
+		AudioManager.play_stage_complete()
 		stage_complete_announced.emit()
 	else:
 		print("[Stage] Finish reached early — %d/%d checkpoints — ignored" % [_expected - 1, total_checkpoints])

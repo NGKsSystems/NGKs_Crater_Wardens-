@@ -40,6 +40,7 @@ func _physics_process(delta: float) -> void:
 	# Landing event
 	if on_floor and not _was_on_floor:
 		landed.emit()
+		VfxManager.spawn_poof(global_position)
 	_was_on_floor = on_floor
 
 	# Gravity
@@ -59,6 +60,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y    = -jump_force
 		_jump_held    = true
 		_jump_hold_timer = 0.0
+		VfxManager.spawn_poof(global_position)
+		AudioManager.play_jump()
 
 	# Jump hold
 	if _jump_held:

@@ -40,6 +40,8 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	if not area.has_meta("pool_key"):
 		return
+	VfxManager.spawn_impact(area.global_position)
+	AudioManager.play_hit()
 	_consume_projectile(area)
 	_hp -= 1
 	if _hp <= 0:
@@ -67,5 +69,7 @@ func _consume_projectile(proj: Area2D) -> void:
 # Called when HP reaches 0. Subclasses may override for FX.
 func _on_hit() -> void:
 	_active = false
+	VfxManager.spawn_explode(global_position)
+	AudioManager.play_explode()
 	hide()
 	ScoreManager.add_enemy_score(score_value)

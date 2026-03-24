@@ -38,5 +38,7 @@ func _on_body_entered(body: Node) -> void:
 	if not body is CharacterBody2D:
 		return
 	_triggered = true
+	VfxManager.spawn_checkpoint(global_position)
+	AudioManager.play_checkpoint()
 	checkpoint_reached.emit(checkpoint_index)
 	print("[CP%d] reached" % checkpoint_index)

@@ -18,6 +18,8 @@ GameStateManager="*res://scripts/systems/GameStateManager.gd"
 PerformanceManager="*res://scripts/systems/PerformanceManager.gd"
 ObjectPoolManager="*res://scripts/systems/ObjectPoolManager.gd"
 ScoreManager="*res://scripts/systems/ScoreManager.gd"
+VfxManager="*res://scripts/systems/VfxManager.gd"
+AudioManager="*res://scripts/systems/AudioManager.gd"
 
 [display]
 

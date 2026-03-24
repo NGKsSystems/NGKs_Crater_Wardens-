@@ -52,6 +52,7 @@ func try_fire_forward() -> void:
 	if _timer_fwd > 0.0:
 		return
 	print("[Weapon] fire_forward")
+	AudioManager.play_fire()
 	_fire("projectile_forward", _SCENE_FWD, Vector2(speed_forward, 0.0), lifetime_forward, _muzzle_fwd)
 	_timer_fwd = cooldown_forward
 
@@ -61,6 +62,7 @@ func try_fire_up() -> void:
 	if _timer_up > 0.0:
 		return
 	print("[Weapon] fire_up")
+	AudioManager.play_fire()
 	_fire("projectile_up", _SCENE_UP, Vector2(0.0, -speed_up), lifetime_up, _muzzle_up)
 	_timer_up = cooldown_up
 
