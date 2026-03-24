@@ -48,7 +48,9 @@ func _on_finish_entered(body: Node) -> void:
 
 
 # Connected programmatically in _ready() to StageController.stage_complete_announced.
+# Phase 10: After 1-second display delay, LevelFlowManager advances to the next level.
 func _on_stage_complete() -> void:
 	ScoreManager.add_stage_clear_bonus(500)
 	_hud.show_state("STAGE COMPLETE!")
+	get_tree().create_timer(1.0).timeout.connect(LevelFlowManager.load_next_level)
 

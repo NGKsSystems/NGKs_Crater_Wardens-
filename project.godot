@@ -24,6 +24,7 @@ ObjectPoolManager="*res://scripts/systems/ObjectPoolManager.gd"
 ScoreManager="*res://scripts/systems/ScoreManager.gd"
 VfxManager="*res://scripts/systems/VfxManager.gd"
 AudioManager="*res://scripts/systems/AudioManager.gd"
+LevelFlowManager="*res://scripts/systems/level_flow_manager.gd"
 
 [display]
 
