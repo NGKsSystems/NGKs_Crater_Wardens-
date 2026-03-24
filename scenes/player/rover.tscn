@@ -31,8 +31,12 @@ color = Color(0.118, 0.122, 0.133, 1)
 polygon = PackedVector2Array(-7, -1, 7, -1, 7, 6, -7, 6)
 
 [node name="Body" type="Polygon2D" parent="."]
-color = Color(0.290, 0.310, 0.333, 1)
+color = Color(0.318, 0.341, 0.365, 1)
 polygon = PackedVector2Array(-20, -6, -20, 10, 18, 10, 20, 6, 20, -2, 14, -7)
+
+[node name="BodyRim" type="Polygon2D" parent="."]
+color = Color(0.58, 0.63, 0.68, 0.90)
+polygon = PackedVector2Array(-20, -6, -20, -3, 18, -3, 20, -2, 20, -4, 14, -7)
 
 [node name="CabinDome" type="Polygon2D" parent="."]
 position = Vector2(-8, 0)
@@ -50,7 +54,7 @@ polygon = PackedVector2Array(-12, -3, 14, -3, 14, 3, -12, 3)
 
 [node name="NosePlate" type="Polygon2D" parent="."]
 position = Vector2(14, 0)
-color = Color(0.541, 0.290, 0.165, 1)
+color = Color(0.65, 0.32, 0.18, 1)
 polygon = PackedVector2Array(-2, -8, 6, -4, 6, 4, -2, 8)
 
 [node name="FrontBlaster" type="Polygon2D" parent="."]
