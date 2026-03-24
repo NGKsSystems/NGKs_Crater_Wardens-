@@ -17,12 +17,20 @@ script = ExtResource("1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("Shape1")
 
-[node name="Visual" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-10, -100, 10, -100, 10, 100, -10, 100)
-color = Color(0.2, 0.8, 1.0, 0.9)
+[node name="PostBase" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-3, -50, 3, -50, 3, 50, -3, 50)
+color = Color(0.118, 0.122, 0.133, 1)
+
+[node name="BeaconGlow" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-12, -70, 12, -70, 16, -62, 12, -54, -12, -54, -16, -62)
+color = Color(0.2, 0.9, 1.0, 0.35)
+
+[node name="BeaconHead" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-8, -68, 8, -68, 10, -62, 8, -56, -8, -56, -10, -62)
+color = Color(0.2, 0.88, 1.0, 1.0)
 
 [node name="Label" type="Label" parent="."]
-position = Vector2(-16, -120)
+position = Vector2(-16, -88)
 size = Vector2(60, 20)
 text = "CP"
 horizontal_alignment = 1

@@ -17,21 +17,21 @@ shape = SubResource("1")
 
 [node name="WheelPodL" type="Polygon2D" parent="."]
 position = Vector2(-10, 8)
-color = Color(0.14, 0.11, 0.09, 1)
+color = Color(0.118, 0.122, 0.133, 1)
 polygon = PackedVector2Array(-7, -1, 7, -1, 7, 6, -7, 6)
 
 [node name="WheelPodR" type="Polygon2D" parent="."]
 position = Vector2(10, 8)
-color = Color(0.14, 0.11, 0.09, 1)
+color = Color(0.118, 0.122, 0.133, 1)
 polygon = PackedVector2Array(-7, -1, 7, -1, 7, 6, -7, 6)
 
 [node name="Body" type="Polygon2D" parent="."]
-color = Color(0.30, 0.20, 0.14, 1)
+color = Color(0.290, 0.310, 0.333, 1)
 polygon = PackedVector2Array(-20, -6, -20, 10, 18, 10, 20, 6, 20, -2, 14, -7)
 
 [node name="CabinDome" type="Polygon2D" parent="."]
 position = Vector2(-8, 0)
-color = Color(0.25, 0.16, 0.11, 1)
+color = Color(0.416, 0.439, 0.471, 1)
 polygon = PackedVector2Array(-10, -10, -10, -6, 8, -6, 10, -8, 6, -12, -6, -12)
 
 [node name="MaxwellVisual" parent="." instance=ExtResource("3")]
@@ -40,17 +40,17 @@ scale = Vector2(0.65, 0.65)
 
 [node name="CabinRim" type="Polygon2D" parent="."]
 position = Vector2(-6, -5)
-color = Color(0.24, 0.15, 0.10, 1)
+color = Color(0.416, 0.439, 0.471, 1)
 polygon = PackedVector2Array(-12, -3, 14, -3, 14, 3, -12, 3)
 
 [node name="NosePlate" type="Polygon2D" parent="."]
 position = Vector2(14, 0)
-color = Color(0.26, 0.17, 0.12, 1)
+color = Color(0.541, 0.290, 0.165, 1)
 polygon = PackedVector2Array(-2, -8, 6, -4, 6, 4, -2, 8)
 
 [node name="FrontBlaster" type="Polygon2D" parent="."]
 position = Vector2(20, -2)
-color = Color(0.14, 0.13, 0.13, 1)
+color = Color(0.118, 0.122, 0.133, 1)
 polygon = PackedVector2Array(0, -2, 10, -2, 10, 2, 0, 2)
 
 [node name="Camera2D" type="Camera2D" parent="."]
