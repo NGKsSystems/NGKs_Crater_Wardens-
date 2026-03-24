@@ -1,0 +1,260 @@
+; Test Lane 3 — NGKs Crater Wardens V1
+; Phase 9: Level Build
+; ----------------------------------------------------------------
+; Layout (ground surface at Y=550):
+;
+;   x=-400 ── x=2400  GAP1(400px)  x=2800 ─── x=4000  GAP2(400px)  x=4400 ── x=6000
+;    GroundL3Left        ↑long       GroundL3Mid   ↑long              GroundL3Right
+;
+;   Hover:  x=600, 900, 3300, 3800
+;   Drone:  (1000,380), (2600,360), (3650,360), (4550,360)
+;   Turret: x=3000, 4450
+;   Mine:   x=3150, 4600
+;   PlatA:  x=1200, y=490  |  PlatB: x=1400, y=480  (jump-chain, 200px CC)
+;   PlatC:  x=1750, y=470  |  PlatD: x=2100, y=490  (jump-chain, 350px CC each)
+;   PlatE:  x=3600, y=490  (section 5 platform)
+;   HazardGap1: (2600, 620) below Gap1
+;   HazardGap2: (4200, 620) below Gap2
+;   CP1: x=1400 | CP2: x=3200 | CP3: x=4400
+;   Finish: x=5000
+; ----------------------------------------------------------------
+
+[gd_scene load_steps=15 format=3 uid="uid://testlane3"]
+
+[ext_resource type="PackedScene" path="res://scenes/player/rover.tscn"             id="1"]
+[ext_resource type="Script"      path="res://scripts/level/test_lane.gd"           id="2"]
+[ext_resource type="PackedScene" path="res://scenes/hazards/crater_gap.tscn"       id="3"]
+[ext_resource type="PackedScene" path="res://scenes/hazards/mine.tscn"             id="4"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/drone_flyer.tscn"      id="5"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/hover_attacker.tscn"   id="6"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/ground_turret.tscn"    id="7"]
+[ext_resource type="Script"      path="res://scripts/level/stage_controller.gd"   id="8"]
+[ext_resource type="PackedScene" path="res://scenes/level/checkpoint_marker.tscn"  id="9"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn"                   id="10"]
+
+[sub_resource type="RectangleShape2D" id="ShapeG3L"]
+size = Vector2(2800, 40)
+
+[sub_resource type="RectangleShape2D" id="ShapeG3M"]
+size = Vector2(1200, 40)
+
+[sub_resource type="RectangleShape2D" id="ShapeG3R"]
+size = Vector2(1600, 40)
+
+[sub_resource type="RectangleShape2D" id="ShapeP3N"]
+size = Vector2(128, 20)
+
+[sub_resource type="RectangleShape2D" id="ShapeFT3"]
+size = Vector2(40, 200)
+
+[node name="TestLane" type="Node2D"]
+script = ExtResource("2")
+
+[node name="HUD" parent="." instance=ExtResource("10")]
+
+[node name="SkyLayer" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="Sky" type="ColorRect" parent="SkyLayer"]
+position = Vector2(0, 0)
+size = Vector2(1280, 720)
+color = Color(0.04, 0.04, 0.1, 1)
+
+[node name="GroundL3Left" type="StaticBody2D" parent="."]
+position = Vector2(1000, 570)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundL3Left"]
+shape = SubResource("ShapeG3L")
+
+[node name="Visual" type="Polygon2D" parent="GroundL3Left"]
+polygon = PackedVector2Array(-1400, -20, 1400, -20, 1400, 20, -1400, 20)
+color = Color(0.28, 0.22, 0.14, 1)
+
+[node name="GroundL3Mid" type="StaticBody2D" parent="."]
+position = Vector2(3400, 570)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundL3Mid"]
+shape = SubResource("ShapeG3M")
+
+[node name="Visual" type="Polygon2D" parent="GroundL3Mid"]
+polygon = PackedVector2Array(-600, -20, 600, -20, 600, 20, -600, 20)
+color = Color(0.28, 0.22, 0.14, 1)
+
+[node name="GroundL3Right" type="StaticBody2D" parent="."]
+position = Vector2(5200, 570)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundL3Right"]
+shape = SubResource("ShapeG3R")
+
+[node name="Visual" type="Polygon2D" parent="GroundL3Right"]
+polygon = PackedVector2Array(-800, -20, 800, -20, 800, 20, -800, 20)
+color = Color(0.28, 0.22, 0.14, 1)
+
+[node name="Gap1MarkerLeft" type="Polygon2D" parent="."]
+position = Vector2(2400, 550)
+polygon = PackedVector2Array(-2, 0, 2, 0, 2, 40, -2, 40)
+color = Color(0.9, 0.2, 0.1, 1)
+
+[node name="Gap1MarkerRight" type="Polygon2D" parent="."]
+position = Vector2(2800, 550)
+polygon = PackedVector2Array(-2, 0, 2, 0, 2, 40, -2, 40)
+color = Color(0.9, 0.2, 0.1, 1)
+
+[node name="Gap2MarkerLeft" type="Polygon2D" parent="."]
+position = Vector2(4000, 550)
+polygon = PackedVector2Array(-2, 0, 2, 0, 2, 40, -2, 40)
+color = Color(0.9, 0.1, 0.05, 1)
+
+[node name="Gap2MarkerRight" type="Polygon2D" parent="."]
+position = Vector2(4400, 550)
+polygon = PackedVector2Array(-2, 0, 2, 0, 2, 40, -2, 40)
+color = Color(0.9, 0.1, 0.05, 1)
+
+[node name="HazardGap1" parent="." instance=ExtResource("3")]
+position = Vector2(2600, 620)
+
+[node name="HazardGap2" parent="." instance=ExtResource("3")]
+position = Vector2(4200, 620)
+
+[node name="Mine1" parent="." instance=ExtResource("4")]
+position = Vector2(3150, 536)
+
+[node name="Mine2" parent="." instance=ExtResource("4")]
+position = Vector2(4600, 536)
+
+[node name="PlatL3A" type="StaticBody2D" parent="."]
+position = Vector2(1200, 490)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatL3A"]
+shape = SubResource("ShapeP3N")
+
+[node name="Visual" type="Polygon2D" parent="PlatL3A"]
+polygon = PackedVector2Array(-64, -10, 64, -10, 64, 10, -64, 10)
+color = Color(0.45, 0.35, 0.2, 1)
+
+[node name="PlatL3B" type="StaticBody2D" parent="."]
+position = Vector2(1400, 480)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatL3B"]
+shape = SubResource("ShapeP3N")
+
+[node name="Visual" type="Polygon2D" parent="PlatL3B"]
+polygon = PackedVector2Array(-64, -10, 64, -10, 64, 10, -64, 10)
+color = Color(0.45, 0.35, 0.2, 1)
+
+[node name="PlatL3C" type="StaticBody2D" parent="."]
+position = Vector2(1750, 470)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatL3C"]
+shape = SubResource("ShapeP3N")
+
+[node name="Visual" type="Polygon2D" parent="PlatL3C"]
+polygon = PackedVector2Array(-64, -10, 64, -10, 64, 10, -64, 10)
+color = Color(0.5, 0.4, 0.2, 1)
+
+[node name="PlatL3D" type="StaticBody2D" parent="."]
+position = Vector2(2100, 490)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatL3D"]
+shape = SubResource("ShapeP3N")
+
+[node name="Visual" type="Polygon2D" parent="PlatL3D"]
+polygon = PackedVector2Array(-64, -10, 64, -10, 64, 10, -64, 10)
+color = Color(0.45, 0.35, 0.2, 1)
+
+[node name="PlatL3E" type="StaticBody2D" parent="."]
+position = Vector2(3600, 490)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatL3E"]
+shape = SubResource("ShapeP3N")
+
+[node name="Visual" type="Polygon2D" parent="PlatL3E"]
+polygon = PackedVector2Array(-64, -10, 64, -10, 64, 10, -64, 10)
+color = Color(0.5, 0.4, 0.2, 1)
+
+[node name="HoverA" parent="." instance=ExtResource("6")]
+position = Vector2(600, 520)
+
+[node name="HoverB" parent="." instance=ExtResource("6")]
+position = Vector2(900, 520)
+
+[node name="HoverC" parent="." instance=ExtResource("6")]
+position = Vector2(3300, 520)
+
+[node name="HoverD" parent="." instance=ExtResource("6")]
+position = Vector2(3800, 520)
+
+[node name="DroneA" parent="." instance=ExtResource("5")]
+position = Vector2(1000, 380)
+
+[node name="DroneB" parent="." instance=ExtResource("5")]
+position = Vector2(2600, 360)
+
+[node name="DroneC" parent="." instance=ExtResource("5")]
+position = Vector2(3650, 360)
+
+[node name="DroneD" parent="." instance=ExtResource("5")]
+position = Vector2(4550, 360)
+
+[node name="TurretA" parent="." instance=ExtResource("7")]
+position = Vector2(3000, 524)
+
+[node name="TurretB" parent="." instance=ExtResource("7")]
+position = Vector2(4450, 524)
+
+[node name="StageController" type="Node" parent="."]
+script = ExtResource("8")
+total_checkpoints = 3
+
+[node name="CP1" parent="." instance=ExtResource("9")]
+position = Vector2(1400, 484)
+checkpoint_index = 1
+checkpoint_name = "CP1"
+
+[node name="CP2" parent="." instance=ExtResource("9")]
+position = Vector2(3200, 484)
+checkpoint_index = 2
+checkpoint_name = "CP2"
+
+[node name="CP3" parent="." instance=ExtResource("9")]
+position = Vector2(4400, 484)
+checkpoint_index = 3
+checkpoint_name = "CP3"
+
+[node name="FinishTrigger" type="Area2D" parent="."]
+position = Vector2(5000, 484)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishTrigger"]
+shape = SubResource("ShapeFT3")
+
+[node name="Visual" type="Polygon2D" parent="FinishTrigger"]
+polygon = PackedVector2Array(-20, -100, 20, -100, 20, 100, -20, 100)
+color = Color(0.95, 0.8, 0.05, 0.9)
+
+[node name="Label" type="Label" parent="FinishTrigger"]
+position = Vector2(-24, -122)
+size = Vector2(72, 20)
+text = "FINISH"
+horizontal_alignment = 1
+
+[node name="Rover" parent="." instance=ExtResource("1")]
+position = Vector2(80, 534)
+
+[connection signal="player_killed" from="HazardGap1"  to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="HazardGap2"  to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="Mine1"       to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="Mine2"       to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="HoverA"      to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="HoverB"      to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="HoverC"      to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="HoverD"      to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="DroneA"      to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="DroneB"      to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="DroneC"      to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="DroneD"      to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="TurretA"     to="." method="_on_hazard_triggered"]
+[connection signal="player_killed" from="TurretB"     to="." method="_on_hazard_triggered"]
+[connection signal="checkpoint_reached" from="CP1"    to="." method="_on_checkpoint_reached"]
+[connection signal="checkpoint_reached" from="CP2"    to="." method="_on_checkpoint_reached"]
+[connection signal="checkpoint_reached" from="CP3"    to="." method="_on_checkpoint_reached"]
+[connection signal="body_entered" from="FinishTrigger" to="." method="_on_finish_entered"]
