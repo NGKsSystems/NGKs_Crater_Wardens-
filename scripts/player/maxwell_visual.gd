@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var bob_amount: float = 1.5
+@export var bob_amount: float = 0.4
 @export var bob_speed: float = 6.0
 @export var visor_pulse_speed: float = 2.4
 @export var visor_min_alpha: float = 0.72
